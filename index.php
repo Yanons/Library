@@ -6,6 +6,6 @@
     <title>Электронная библиотека</title>
 </head>
 <body>
-    
+    <div>Ждём</div>
 </body>
 </html>
