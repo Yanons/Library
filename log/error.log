@@ -1,0 +1,3 @@
+2025/01/15 15:48:08 [error] 2883610#2883610: *3664 directory index of "/lib_site/Library/fonts/" is forbidden, client: 212.15.58.60, server: ideas-box.ru, request: "GET /fonts/ HTTP/1.1", host: "ideas-box.ru", referrer: "https://ideas-box.ru/"
+2025/01/15 15:48:09 [error] 2883610#2883610: *3664 directory index of "/lib_site/Library/fonts/" is forbidden, client: 212.15.58.60, server: ideas-box.ru, request: "GET /fonts/ HTTP/1.1", host: "ideas-box.ru", referrer: "https://ideas-box.ru/"
+2025/01/15 15:48:09 [error] 2883610#2883610: *3664 directory index of "/lib_site/Library/fonts/" is forbidden, client: 212.15.58.60, server: ideas-box.ru, request: "GET /fonts/ HTTP/1.1", host: "ideas-box.ru", referrer: "https://ideas-box.ru/"

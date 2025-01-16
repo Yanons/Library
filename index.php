@@ -1,4 +1,4 @@
-<style>
+<!-- --><style> 
     @font-face {
         font-family: "Arimo-Bold";
         src: local("Arimo-Bold"), url("/fonts/static/Arimo-Bold.ttf"),
