@@ -1,0 +1,130 @@
+@font-face {
+    font-family: "Arimo-Bold";
+    src: local("Arimo-Bold"), url("/fonts/static/Arimo-Bold.ttf"),
+}
+@font-face {
+    font-family: "Arimo";
+    src: local("Arimo"), url("/fonts/Arimo-VariableFont_wght.ttf"),
+}
+@font-face {
+    font-family: "Arimo-BoldItalic";
+    src: local("Arimo-BoldItalic"), url("/fonts/static/Arimo-BoldItalic.ttf");
+}
+.window{
+    margin: 5px 50px 5px 50px;
+    height: auto;
+    width: auto;
+}
+.up-window{
+    display: flex;
+    align-items:center;
+    justify-content: space-between;
+    height: 5%;
+    width: auto;
+}
+.center{
+    display: flex;
+    height: 90%;
+    width: auto;
+}
+.botton-window{
+    height: 30%;
+    width: auto;
+}
+.logo-name{
+    margin-left: 45%;
+}
+
+.menu-left-text{
+    display: flex;
+    flex-wrap: wrap;
+    align-content: flex-start;
+    height: auto;
+    width: 70%;
+    padding:3%;
+    background-color:rgb(240, 240, 240);
+    border: 0px solid #fff;
+    border-radius: 50px 0 0 50px;
+}
+.menu-right-button{
+    height: auto;
+    width: 30%;
+    border: 0px solid #fff;
+    border-radius: 0 50px 50px 0;
+}
+.style-text{
+    font-family: "Arimo";
+}
+.style-title{
+    font-family: "Arimo-BoldItalic";
+}
+.info-menu-right{
+    position: absolute;
+    top: 35%;
+    width: 20%;
+    margin-left: 2%;
+}
+.buttons-main{
+    display: flex;
+    flex-direction: column;
+    position: absolute;
+    width: 20%;
+    margin-left: 2%;
+    top: 60%;
+}
+.size-font{
+    font-size: 20;
+}
+.size-font-big{
+    font-size: 40;
+}
+.btn {
+	display: inline-block;	
+	box-sizing: border-box;
+	padding: 0 25px;
+	margin: 0 15px 15px 0;
+	outline: none;
+	border: 0px solid #fff;
+	border-radius: 5px;
+	height: 46px;
+	line-height: 46px;
+	font-size: 14px;
+	font-weight: 600;
+	text-decoration: none;
+	color: #444;
+	background-color: #fff;
+	box-shadow: 0 4px 6px rgb(65 132 144 / 10%), 0 1px 3px rgb(0 0 0 / 8%);
+	cursor: pointer;
+	user-select: none;
+	appearance: none;
+	touch-action: manipulation;  
+	vertical-align: top;
+	transition: box-shadow 0.2s;
+}
+.btn:focus-visible {
+	border: 1px solid #4c51f9;
+	outline: none;
+}
+.btn:hover {
+	transition: all 0.2s;
+	box-shadow: 0 7px 14px rgb(65 132 144 / 10%), 0 3px 6px rgb(0 0 0 / 8%);
+}
+.btn:active {
+	background-color: #808080;
+}
+.btn:disabled {
+	background-color: #eee;
+	border-color: #eee;
+	color: #444;
+	cursor: not-allowed;
+}
+.con-img-fon {
+  background-image: url('/img/fon.jpg');
+  background-repeat: repeat;
+}
+.color-white{
+    color:white;
+}
+.marg-top{
+    margin-top:10%;
+}
