@@ -1,4 +1,15 @@
 <!-- -->
+ <?php
+ require 'vendor/autoload.php';
+
+ use PostgreSQL\Connection;
+ 
+ try {
+     Connection::get()->connect();
+ } catch (\PDOException $e) {
+     echo $e->getMessage();
+ }
+ ?>
 </style>
 <!DOCTYPE html>
 <html lang="en">
