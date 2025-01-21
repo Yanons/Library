@@ -21,4 +21,5 @@ class message {
         $this->id_message = $id_message;
         return $message;
     }
+    #разбор отправки сообщений
 }
