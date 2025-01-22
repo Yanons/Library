@@ -1,0 +1,31 @@
+CREATE TABLE "question" (
+  "id" SERIAL PRIMARY KEY,
+  "id_return_1" bigint,
+  "id_return_2" bigint,
+  "question" text,
+  "info_return_1" text,
+  "info_return_2" text,
+  CONSTRAINT fk_return_1 FOREIGN KEY (id_return_1) REFERENCES return(id),
+  CONSTRAINT fk_return_2 FOREIGN KEY (id_return_2) REFERENCES return(id)
+);
+
+CREATE TABLE "return" (
+  "id" SERIAL PRIMARY KEY,
+  "return" text
+);
+
+CREATE TABLE "info_lite_mbti" (
+  "id" SERIAL PRIMARY KEY,
+  "id_user" bigint,
+  "id_question" bigint,
+  "id_return" bigint,
+  CONSTRAINT fk_user FOREIGN KEY (id_user) REFERENCES user_temp(id),
+  CONSTRAINT fk_question FOREIGN KEY (id_question) REFERENCES question(id),
+  CONSTRAINT fk_return FOREIGN KEY (id_return) REFERENCES return(id)
+);
+
+CREATE TABLE "user_temp" (
+  "id" SERIAL PRIMARY KEY,
+  "ip" text,
+  "device" text
+);
