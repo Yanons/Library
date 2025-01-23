@@ -6,7 +6,7 @@
 # $sql = 'INSERT INTO labels(name) VALUES(:name)'; #строка
 #         $stmt = $this->pdo->prepare($sql); #запуск строки для ввода
 #         $stmt->bindValue(':name', $id_message);
-#         $stmt->execute();
+#         $stmt->execute(); #вывод
 class message {
     public $message;
     public $otvet_one;
