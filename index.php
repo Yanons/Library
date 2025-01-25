@@ -1,5 +1,8 @@
-<!-- -->
+<!--session_destroy();
+if(isset($_SESSION['cart']))-->
  <?php
+ session_start(); // запустите свою сессию PHP! 
+
  require 'vendor/autoload.php';
 
  use PostgreSQL\Connection;
@@ -20,11 +23,30 @@
     <link rel="stylesheet" href="css/index.css">
 </head>
 <body>
-        <?php 
-            require 'block/header.php'; 
-            require 'block/center-main.php'; 
+        <?php
+            require 'block/header.php';
+            
+            if (isset($_POST['mbtitest']))
+            {
+                $_SESSION['mbtitest'] = $_POST['mbtitest'];
+            }
+
+            if (isset($_SESSION['mbtitest']))
+            {
+                switch($_SESSION['mbtitest']){
+                    case 1:
+                        require 'block/mbtitest.php';
+                    case 2:
+                        require 'block/mbtitestcognitiv.php';
+                }
+            }
+            else{
+                require 'block/center-main.php';
+            }
             require 'block/button.php'; 
+
         ?>
     </div>
 </body>
 </html>
+<?php ?>

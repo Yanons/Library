@@ -128,3 +128,8 @@
 .marg-top{
     margin-top:10%;
 }
+.left-test{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}

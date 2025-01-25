@@ -1,4 +1,8 @@
 <?php
+namespace FunctionMbti;
+require 'vendor/autoload.php';
+use PostgreSQL\Connection;
+$pdo = Connection::get()->connect();
 #$STH = $DBH->query('SELECT name, addr, city from folks');  #запуск строки для вывода
 # устанавливаем режим выборки
 #$STH->setFetchMode(PDO::FETCH_ASSOC); 
@@ -13,29 +17,27 @@ class message {
     public $otvet_two;
     public $id_message;
 
-    function __construct($otvet, $id_message) {
-        $this->message = $name;
-        return $message;
+    public function __construct($id_message) {
+
     }
     public function newmessage($id_message) {
-    {
-        $sql = 'SELECT * FROM users WHERE email = :email'; #строка
+        $sql = "SELECT * FROM question where id = :id";
         $stmt = $pdo->prepare($sql);
-        $stmt->execute(['' => '']);
-        $user = $stmt->fetch();
-
-        return $user;
+        $stmt->execute(['id' => $id_message]);
+        #$stmt->setFetchMode(PDO::FETCH_ASSOC);  
+        $info = $stmt->fetch();
+        return $info;
     }
-        $this->message = $name;
-        $this->otvet_one = $otvet_one;
-        $this->otvet_two = $otvet_two;
-        $this->id_message = $id_message;
-        return $message;
-    }
-    public function reg_init($otvet, $id_message) {
-        $this->message = $name;
-        $this->id_message = $id_message;
-        return $message;
+    public function savereturn($id_user, $id_message, $id_return) {
+        $sql = 'INSERT INTO info_lite_mbti ("id_user","id_question","id_return") VALUES (:id_user, :id_question, :id_return)';
+        $stmt = $pdo->prepare($sql);
+        $stmt->execute([
+            'id_user' => $id_user,
+            'id_question' => $id_message,
+            'id_return' => $id_return
+        ]);
+        #$stmt->setFetchMode(PDO::FETCH_ASSOC);  
+        if( $stmt ) return "good";
     }
     #разбор отправки сообщений
 }
