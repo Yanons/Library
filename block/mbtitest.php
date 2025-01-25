@@ -1,3 +1,7 @@
+<!--echo '<pre>';
+print_r($array); проверка массива
+echo '</pre>';-->
+
 <?php
 include 'app/main.php';
 require 'vendor/autoload.php';
@@ -7,10 +11,11 @@ use PostgreSQL\Connection;
     <div class="center-test">
         <div class="left-test">
             <?php
-            
+            echo $_SERVER['HTTP_USER_AGENT'], "<br />\n";
+            echo $_SERVER['REMOTE_ADDR'], "<br />\n";
             if (isset($_POST['otvet']))
             {
-                $errlog = \FunctionMbti\message::savereturn(123,$_SESSION['question'],$_POST['otvet']);
+                $errlog = \FunctionMbti\message::savereturn(1,$_SESSION['question'],$_POST['otvet']);
                 if($errlog = "good"){
                     $info = \FunctionMbti\message::newmessage($_SESSION['question']+1);
                     $_SESSION['question'] = $info[id];
