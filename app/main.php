@@ -1,5 +1,5 @@
 <?php
-namespace FunctionMbti;
+#namespace FunctionMbti;
 require 'vendor/autoload.php';
 use PostgreSQL\Connection;
 $pdo = Connection::get()->connect();
@@ -7,24 +7,30 @@ $pdo = Connection::get()->connect();
 
 class ip_reg{
 
-    public $device_user;
-    public $ip_user;
+    public string $device_user;
+    public string $ip_user;
     public $id_user;
 
     public function __construct() {
         if (!empty($_SERVER['HTTP_CLIENT_IP'])) {
-            $ip_user = explode(',', $_SERVER['HTTP_X_FORWARDED_FOR']);
+            $this->ip_user = explode(',', $_SERVER['HTTP_X_FORWARDED_FOR']);
         } elseif (!empty($_SERVER['HTTP_X_FORWARDED_FOR'])) {
-            $ip_user = explode(',', $_SERVER['HTTP_X_FORWARDED_FOR']);
+            $this->ip_user = explode(',', $_SERVER['HTTP_X_FORWARDED_FOR']);
         } elseif (!empty($_SERVER['REMOTE_ADDR'])) {
-            $ip_user = $_SERVER['REMOTE_ADDR'];
+            $this->ip_user = $_SERVER['REMOTE_ADDR'];
         }
-        $device_user = $_SERVER['HTTP_USER_AGENT'];
+        $this->device_user = $_SERVER['HTTP_USER_AGENT'];
     }
 
     public function serch_id(){
-
-        
+        $sql = 'SELECT * FROM user_temp where ip = :ip_user and device = :device_user';
+        $pdo = Connection::get()->connect();
+        $stmt = $pdo->prepare($sql);
+        $stmt->execute([
+            'ip_user' => $this->ip_user,
+            'device_user' => $this->device_user
+        ]);
+        if($stmt == NULL){ip_reg::add_user();}
     }
 
     public function add_user(){
@@ -32,9 +38,9 @@ class ip_reg{
         $pdo = Connection::get()->connect();
         $stmt = $pdo->prepare($sql);
         $stmt->execute([
-            'ip_user' => $ip_user,
-            'device_user' => $device_user
-        ]); 
+            'ip_user' => $this->ip_user,
+            'device_user' => $this->device_user
+        ]);
         $id_user = $stmt->lastInsertId();
     }
     

@@ -6,6 +6,8 @@ echo '</pre>';-->
 include 'app/main.php';
 require 'vendor/autoload.php';
 use PostgreSQL\Connection;
+$user = new ip_reg;
+$user->serch_id();
 ?>
 <div class="main-test">
     <div class="center-test">
@@ -15,14 +17,14 @@ use PostgreSQL\Connection;
             echo $_SERVER['REMOTE_ADDR'], "<br />\n";
             if (isset($_POST['otvet']))
             {
-                $errlog = \FunctionMbti\message::savereturn(1,$_SESSION['question'],$_POST['otvet']);
+                $errlog = message::savereturn(1,$_SESSION['question'],$_POST['otvet']);
                 if($errlog = "good"){
-                    $info = \FunctionMbti\message::newmessage($_SESSION['question']+1);
-                    $_SESSION['question'] = $info[id];
+                    $info = message::newmessage($_SESSION['question']+1);
+                    $_SESSION['question'] = $info['id'];
                 }
             }else{
                 $info = \FunctionMbti\message::newmessage(1);
-                $_SESSION['question'] = $info[id];
+                $_SESSION['question'] = $info['id'];
             }
             ?>
             <div class="vopros-row fl-fc">
