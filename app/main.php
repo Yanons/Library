@@ -107,16 +107,25 @@ class mbti_lite {
 
     }
     public function mbti_resul($id_user) {
-        $sql2 = "SELECT * FROM question where id = :id";
+        $tipe = array( 2 => 'I', 3 => 'E', 4=> 'N', 5 => 'S', 6 => 'T', 7 => 'F', 8 => 'J', 9 => 'P');
+        $sql3 = "SELECT id_return from info_lite_mbti group by id_return, id_user HAVING count(*) > 1 and id_user = :id";
         $pdo = Connection::get()->connect();
-        $stmt = $pdo->prepare($sql1);
-        $stmt->execute(['id' => $id_user]);
-        $info = $stmt->fetch();
+        $stmi = $pdo->prepare($sql3);
+        $stmi->execute(['id' => $id_user]);
+        $info = $stmi->fetch();
+        $mbti16 = '';
+        foreach ($info as $var => $key){
+            $mbti16 = $mbti16 + $key;
+        }
+        return $info;
     }
     public function clear_resul($id_user) {
+        $sql1 = "DELETE FROM info_lite_mbti WHERE id_user = :id";
         $sql2 = "UPDATE user_temp set ending = null where id = :id";
         $pdo = Connection::get()->connect();
         $stmt = $pdo->prepare($sql2);
+        $stmt->execute(['id' => $id_user]);
+        $stmt = $pdo->prepare($sql1);
         $stmt->execute(['id' => $id_user]);
     }
 }

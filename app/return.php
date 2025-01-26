@@ -1,18 +1,17 @@
 <?php
 session_start();
-
-
 if($_POST['otvet']){
     $_SESSION['otvet'] = $_POST['otvet'];
 }
-if($_POST['edit_l_mb']){
-    switch($_SESSION['edit_l_mb']){
+if($_POST['editlmb']){
+    switch($_POST['editlmb']){
         case 1:
             unset($_SESSION['mbtitest']);
-            header("Location:/");
+            unset($_POST['mbtitest']);
+            break;
         case 2:
-            $_SESSION['edit_l_mb'] = $_POST['edit_l_mb'];
+            $_SESSION['editlmb'] = $_POST['editlmb'];
+            break;
     }
-    $_SESSION['otvet'] = $_POST['otvet'];
 }
 header("Location:/");

@@ -8,6 +8,7 @@ require 'vendor/autoload.php';
 use PostgreSQL\Connection;
 $user = new ip_reg;
 $message = new message;
+$mbtiLite = new mbti_lite;
 
 if($user->serch_id()){
     $id = $user->serch_id();
@@ -15,10 +16,11 @@ if($user->serch_id()){
 }else{
     $_SESSION['id'] = $user->add_user();
 }
-if (isset($_SESSION['edit_l_mb'])){
-    $mbtiLite = new mbti_lite;
+if ($_SESSION['editlmb']){
     $mbtiLite->clear_resul($_SESSION['id']);
     unset($_SESSION['mbtitest']);
+    unset($_POST['mbtitest']);
+    unset($_SESSION['editlmb']);
     header("Location:/");
 }
 ?>
@@ -63,12 +65,15 @@ if (isset($_SESSION['edit_l_mb'])){
         <div class="left-test">
             <div class="vopros-row fl-fc">
                 <div class="vopros fl-fc">
-                    <h1><?php echo 'Вы : '.'1';?></h1>
+                    <h1><?php $reg = $mbtiLite->mbti_resul($_SESSION['id']);
+                    echo '<pre>';
+                    print_r($reg); 
+                    echo '</pre>';?></h1>
                 </div>
                 <div class="otvety fl-fc">
                     <form action='app/return.php' method="POST">
-                        <button name="edit_l_mb" type="submit" value="1" class="btn">В главную</button>
-                        <button name="edit_l_mb" type="submit" value="2" class="btn">Очистить</button>
+                        <button name="editlmb" type="submit" value="1" class="btn">В главную</button>
+                        <button name="editlmb" type="submit" value="2" class="btn">Очистить</button>
                     </form>
                 </div>
             </div>

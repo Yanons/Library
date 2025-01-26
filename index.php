@@ -36,8 +36,10 @@ if(isset($_SESSION['cart']))-->
                 switch($_SESSION['mbtitest']){
                     case 1:
                         require 'block/mbtitest.php';
+                        break;
                     case 2:
                         require 'block/mbtitestcognitiv.php';
+                        break;
                 }
             }
             else{
