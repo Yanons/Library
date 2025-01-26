@@ -53,28 +53,70 @@ class message {
     public $otvet_two;
     public $id_message;
 
-    public function __construct($id_message) {
+    public function __construct() {
 
     }
-    public function newmessage($id_message) {
+    public function newmessage($id_user) {
+        $sql1 = "SELECT * FROM info_lite_mbti where id_user = :id ORDER BY id_question DESC LIMIT 1";
         $sql = "SELECT * FROM question where id = :id";
+        $sql2 = "UPDATE user_temp set ending = 'end' where id = :id;";
         $pdo = Connection::get()->connect();
-        $stmt = $pdo->prepare($sql);
-        $stmt->execute(['id' => $id_message]);
-        #$stmt->setFetchMode(PDO::FETCH_ASSOC);  
-        $info = $stmt->fetch();
-        return $info;
+        $stm = $pdo->prepare($sql1);
+        $stm->execute(['id' => $id_user]);
+        $info = $stm->fetch();
+        if($info){
+            $stmt = $pdo->prepare($sql);
+            $stmt->execute(['id' => $info['id_question']+1]);
+            $resul = $stmt->fetch();
+            if($resul){
+                $_SESSION['question'] = $resul['id'];
+                return $resul;
+            }else{
+                $_SESSION['question'] = NULL;
+                $stmu = $pdo->prepare($sql2);
+                $stmu->execute(['id' => $id_user]);
+            }
+        }else{
+            $stml = $pdo->prepare($sql);
+            $stml->execute(['id' => 1]);
+            $resul = $stml->fetch();
+            $_SESSION['question'] = $resul['id'];
+            return $resul;
+        }
+        
+
     }
     public function savereturn($id_user, $id_message, $id_return) {
-        $sql = 'INSERT INTO info_lite_mbti (id_user,id_question,id_return) VALUES (:id_user, :id_question, :id_return)';
-        $pdo = Connection::get()->connect();
-        $stmt = $pdo->prepare($sql);
-        $stmt->execute([
+        if($id_return){
+            $sql = 'INSERT INTO info_lite_mbti (id_user,id_question,id_return) VALUES (:id_user, :id_question, :id_return)';
+            $pdo = Connection::get()->connect();
+            $stmt = $pdo->prepare($sql);
+            $stmt->execute([
             'id_user' => $id_user,
             'id_question' => $id_message,
             'id_return' => $id_return
-        ]); 
-        if( $stmt ) return "good";
+            ]); 
+            if( $stmt ) return "good";
+        }
+        
     }
     #разбор отправки сообщений
+}
+class mbti_lite {
+    public function __construct() {
+
+    }
+    public function mbti_resul($id_user) {
+        $sql2 = "SELECT * FROM question where id = :id";
+        $pdo = Connection::get()->connect();
+        $stmt = $pdo->prepare($sql1);
+        $stmt->execute(['id' => $id_user]);
+        $info = $stmt->fetch();
+    }
+    public function clear_resul($id_user) {
+        $sql2 = "UPDATE user_temp set ending = null where id = :id";
+        $pdo = Connection::get()->connect();
+        $stmt = $pdo->prepare($sql2);
+        $stmt->execute(['id' => $id_user]);
+    }
 }

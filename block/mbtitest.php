@@ -8,45 +8,74 @@ require 'vendor/autoload.php';
 use PostgreSQL\Connection;
 $user = new ip_reg;
 $message = new message;
+
 if($user->serch_id()){
     $id = $user->serch_id();
     $_SESSION['id'] =$id['id'];
 }else{
     $_SESSION['id'] = $user->add_user();
 }
+if (isset($_SESSION['edit_l_mb'])){
+    $mbtiLite = new mbti_lite;
+    $mbtiLite->clear_resul($_SESSION['id']);
+    unset($_SESSION['mbtitest']);
+    header("Location:/");
+}
 ?>
 <div class="main-test">
     <div class="center-test">
         <div class="left-test">
         <?php
-
-            if (isset($_POST['otvet']))
+            if (isset($_SESSION['otvet']))
             {
-                $errlog = $message->savereturn($_SESSION['id'],$_SESSION['question'],$_POST['otvet']);
+                $errlog = $message->savereturn($_SESSION['id'],$_SESSION['question'],$_SESSION['otvet']);
                 if($errlog = "good"){
-
                     $info = $message->newmessage($_SESSION['id']);
-                    $_SESSION['question'] = $info['id'];
                 }
+                $_SESSION['otvet']= null;
             }else{
-                $info = $message->newmessage($_SESSION['id']); #\FunctionMbti\
-                $_SESSION['question'] = $info['id'];
+                if($id['ending'] != 'end'){
+                    $info = $message->newmessage($_SESSION['id']);
+                }
             }
+            if ($_SESSION['question']){
             ?>
             <div class="vopros-row fl-fc">
                 <div class="vopros fl-fc">
                     <h1><?php echo $info['question'];?></h1>
                 </div>
                 <div class="otvety fl-fc">
-                    <form action='' method="POST">
+                    <form action="app/return.php" method="POST">
                         <button name="otvet" type="submit" value="<?php echo $info['id_return_1'];?>" class="btn">Ответ Да</button>
                         <button name="otvet" type="submit" value="1" class="btn">Незнаю</button>
                         <button name="otvet" type="submit" value="<?php echo $info['id_return_2'];?>" class="btn">Ответ Нет</button>
                     </form>
                 </div>
             </div>
-            <?php ?>
+            
         </div>
         <div class="right-test"></div>
     </div>
+ <?php }else{ 
+    unset($_POST['otvet']);
+    ?>
+    <div class="center-test">
+        <div class="left-test">
+            <div class="vopros-row fl-fc">
+                <div class="vopros fl-fc">
+                    <h1><?php echo 'Вы : '.'1';?></h1>
+                </div>
+                <div class="otvety fl-fc">
+                    <form action='app/return.php' method="POST">
+                        <button name="edit_l_mb" type="submit" value="1" class="btn">В главную</button>
+                        <button name="edit_l_mb" type="submit" value="2" class="btn">Очистить</button>
+                    </form>
+                </div>
+            </div>
+            
+        </div>
+        <div class="right-test"></div>
+    </div>
+
+    <?php } ?>
 </div>
