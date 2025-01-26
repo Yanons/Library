@@ -7,23 +7,29 @@ include 'app/main.php';
 require 'vendor/autoload.php';
 use PostgreSQL\Connection;
 $user = new ip_reg;
-$user->serch_id();
+$message = new message;
+if($user->serch_id()){
+    $id = $user->serch_id();
+    $_SESSION['id'] =$id['id'];
+}else{
+    $_SESSION['id'] = $user->add_user();
+}
 ?>
 <div class="main-test">
     <div class="center-test">
         <div class="left-test">
-            <?php
-            echo $_SERVER['HTTP_USER_AGENT'], "<br />\n";
-            echo $_SERVER['REMOTE_ADDR'], "<br />\n";
+        <?php
+
             if (isset($_POST['otvet']))
             {
-                $errlog = message::savereturn(1,$_SESSION['question'],$_POST['otvet']);
+                $errlog = $message->savereturn($_SESSION['id'],$_SESSION['question'],$_POST['otvet']);
                 if($errlog = "good"){
-                    $info = message::newmessage($_SESSION['question']+1);
+
+                    $info = $message->newmessage($_SESSION['id']);
                     $_SESSION['question'] = $info['id'];
                 }
             }else{
-                $info = \FunctionMbti\message::newmessage(1);
+                $info = $message->newmessage($_SESSION['id']); #\FunctionMbti\
                 $_SESSION['question'] = $info['id'];
             }
             ?>

@@ -30,7 +30,8 @@ class ip_reg{
             'ip_user' => $this->ip_user,
             'device_user' => $this->device_user
         ]);
-        if($stmt == NULL){ip_reg::add_user();}
+        $info = $stmt->fetch();
+        return $info;
     }
 
     public function add_user(){
@@ -41,7 +42,8 @@ class ip_reg{
             'ip_user' => $this->ip_user,
             'device_user' => $this->device_user
         ]);
-        $id_user = $stmt->lastInsertId();
+        $id_user = $pdo->lastInsertId();
+        return $id_user;
     }
     
 }
