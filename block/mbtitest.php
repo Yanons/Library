@@ -44,13 +44,13 @@ if ($_SESSION['editlmb']){
             ?>
             <div class="vopros-row fl-fc">
                 <div class="vopros fl-fc">
-                    <h1><?php echo $info['question'];?></h1>
+                    <h1 class="mb-que-text"><?php echo $info['question'];?></h1>
                 </div>
                 <div class="otvety fl-fc">
                     <form action="app/return.php" method="POST">
-                        <button name="otvet" type="submit" value="<?php echo $info['id_return_1'];?>" class="btn">Ответ Да</button>
-                        <button name="otvet" type="submit" value="1" class="btn">Незнаю</button>
-                        <button name="otvet" type="submit" value="<?php echo $info['id_return_2'];?>" class="btn">Ответ Нет</button>
+                        <button name="otvet" type="submit" value="<?php echo $info['id_return_1'];?>" class="btn text-but-size">Ответ Да</button>
+                        <button name="otvet" type="submit" value="1" class="btn text-but-size">Незнаю</button>
+                        <button name="otvet" type="submit" value="<?php echo $info['id_return_2'];?>" class="btn text-but-size">Ответ Нет</button>
                     </form>
                 </div>
             </div>
@@ -67,7 +67,7 @@ if ($_SESSION['editlmb']){
                 <div class="vopros fl-fc">
                     <h1><?php $reg = $mbtiLite->mbti_resul($_SESSION['id']);
                     echo '<pre>';
-                    print_r($reg); 
+                    echo $reg; 
                     echo '</pre>';?></h1>
                 </div>
                 <div class="otvety fl-fc">

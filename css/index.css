@@ -32,7 +32,7 @@
     width: auto;
 }
 .logo-name{
-    margin-left: 45%;
+    margin-left: 43%;
 }
 
 .menu-left-text{
@@ -60,7 +60,7 @@
 }
 .info-menu-right{
     position: absolute;
-    top: 35%;
+    top: 25%;
     width: 20%;
     margin-left: 2%;
 }
@@ -68,7 +68,7 @@
     display: flex;
     flex-direction: column;
     position: absolute;
-    width: 20%;
+    width: 25%;
     margin-left: 2%;
     top: 60%;
 }
@@ -77,6 +77,12 @@
 }
 .size-font-big{
     font-size: 40;
+}
+.size-font-mb-title{
+    font-size: 30;
+}
+.size-font-mb{
+    font-size: 20;
 }
 .btn {
 	display: inline-block;	
@@ -132,4 +138,77 @@
     display: flex;
     flex-direction: column;
     align-items: center;
+}
+.vopros, .otvety{
+    display: flex;
+    justify-content: center;
+}
+    #web {display: block;}
+    #mobile {display: none;}
+
+
+.center-mb{
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    height: auto;
+    padding: 5%;
+}
+.top-menu-button{
+    display: flex;
+    flex-direction: column;
+    width: 80%;
+    height: 100%;
+    background-image: url('/img/fon1.jpg');
+    border-radius: 10px 10px 0 0;
+    padding: 5%;
+    
+}
+.info-menu-mb{
+    display: flex;
+    flex-direction: column;
+    width: 90%;
+    height: auto;
+}
+.form-mb{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.mb-mod-logo{
+    font-size: 25px;
+}
+.mb-que-text{
+    font-size: 25px;
+
+}
+.center-test{
+    padding: 5%;
+}
+.text-but-size{
+    font-size: 15px;
+    padding: 1px;
+}
+.main-test{
+
+
+    height:80%;
+}
+@media screen and (max-width: 760px) { /*650px*/
+    #web {display: none;}
+    #mobile {display: block;}
+    .mb-mod-logo{
+        font-size: 15px;
+    }
+    .main-test{
+        display: flex;
+        align-items: center;
+        height:80%;
+    }
+}
+@media screen and (max-width: 300px) {
+    .text-but-size{
+        font-size: 10px;
+        padding: 0px;
+    }
 }

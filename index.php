@@ -42,9 +42,14 @@ if(isset($_SESSION['cart']))-->
                         break;
                 }
             }
-            else{
-                require 'block/center-main.php';
-            }
+            else{?>
+                <div id="mobile">
+                <?php require 'block/mb-center-main.php';?>
+                </div>
+                <div id="web">
+                <?php require 'block/center-main.php';?>
+                </div>
+        <?php   }
             require 'block/button.php'; 
 
         ?>
