@@ -1,3 +1,4 @@
+<!-- -->
 <div class="center-mb">
     <div class="top-menu-button">
         <h1 class="size-font-big style-text color-white">Вы можете выбрать один из двух тестов</h1>
