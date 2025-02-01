@@ -17,7 +17,7 @@
                     <h1 class="size-font-big style-text color-white">Вы можете выбрать один из двух тестов</h1>
                 </div>
                 <div class="buttons-main">
-                    <form action="" method="POST">
+                    <form class="form-style" action="" method="POST">
                     <button name="mbtitest" value="1" class="btn">Простой тест</button>
                     <button name="mbtitest" value="2" class="btn">Углублённый тест</button>
                 </div>
