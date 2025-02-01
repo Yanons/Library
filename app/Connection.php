@@ -1,6 +1,5 @@
 <?php
 namespace PostgreSQL;
-##
 final class Connection{
     private static ?Connection $conn = null;
 
