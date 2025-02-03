@@ -120,6 +120,7 @@ class mbti_lite {
         }
         return $mbti16;
     }
+    #определение mbti
     public function clear_resul($id_user) {
         $sql1 = "DELETE FROM info_lite_mbti WHERE id_user = :id";
         $sql2 = "UPDATE user_temp set ending = null where id = :id";
