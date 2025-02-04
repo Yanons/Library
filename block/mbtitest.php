@@ -60,6 +60,7 @@ if ($_SESSION['editlmb']){
     </div>
  <?php }else{ 
     unset($_POST['otvet']);
+    #вывод типа личности
     ?>
     <div class="center-test">
         <div class="left-test">
