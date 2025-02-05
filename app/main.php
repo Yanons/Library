@@ -108,7 +108,7 @@ class mbti_lite {
     }
     public function mbti_resul($id_user) {
         $tipe = array( 2 => 'I', 3 => 'E', 4=> 'N', 5 => 'S', 6 => 'T', 7 => 'F', 8 => 'J', 9 => 'P');
-        $sql3 = "SELECT id_return from info_lite_mbti group by id_return, id_user HAVING count(*) > 1 and id_user = :id_user order by id_return ASC ";
+        $sql3 = "SELECT id_return from info_lite_mbti group by id_return, id_user HAVING count(*) > 2 and id_user = :id_user order by id_return ASC ";
         $pdo = Connection::get()->connect();
         $stmi = $pdo->prepare($sql3);
         $stmi->execute(['id_user' => $id_user]);
